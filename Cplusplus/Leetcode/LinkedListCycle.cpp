@@ -1,5 +1,5 @@
 // success
-// https://leetcode.com/problems/middle-of-the-linked-list/
+// https://leetcode.com/problems/linked-list-cycle/
 #include <iostream>
 #include <string>
 #include <math.h>
@@ -10,37 +10,37 @@
 #include <queue>
 #include <map>
 #include <algorithm>
+#include <climits>
 
 using namespace std;
 
-//Definition for singly-linked list.
 struct ListNode
 {
     int val;
     ListNode *next;
-    ListNode() : val(0), next(nullptr){};
+    // ListNode() : val(0), next(nullptr){};
     ListNode(int x) : val(x), next(nullptr){};
-    ListNode(int x, ListNode *next) : val(x), next(next){};
+    // ListNode(int x, ListNode *next) : val(x), next(next){};
 };
 
 class Solution
 {
 public:
-    ListNode *middleNode(ListNode *head)
+    bool hasCycle(ListNode *head)
     {
         if (head == nullptr)
-            return nullptr;
-        ListNode *current = head;
-        int size = 0;
-        while (current != nullptr)
+            return false;
+        ListNode *fast = head->next;
+        ListNode *slow = head;
+
+        while (slow != fast)
         {
-            current = current->next;
-            size++;
+            if (fast == nullptr || fast->next == nullptr)
+                return false;
+            fast = fast->next->next;
+            slow = slow->next;
         }
-        current = head;
-        for (int i = 0; i < size / 2; i++)
-            current = current->next;
-        return current;
+        return true;
     }
 };
 
@@ -64,17 +64,13 @@ void printList(ListNode *head)
 
 int main()
 {
-    ListNode *list = new ListNode(1);
-    insert(list, 2);
-    insert(list, 3);
-    insert(list, 4);
-    insert(list, 5);
-    insert(list, 6);
-    // insert(list, 7);
-
     Solution s;
-    ListNode *middleNode = s.middleNode(list);
-    printList(middleNode);
-    cout << '\n';
+    ListNode *head = new ListNode(1);
+    insert(head, 2);
+    insert(head, 3);
+    insert(head, 4);
+    cout << s.hasCycle(head) << endl;
+    head->next->next->next->next = head->next;
+    cout << s.hasCycle(head) << endl;
     return 0;
 }

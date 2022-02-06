@@ -89,16 +89,17 @@ void insert(ListNode *head, int x)
     ListNode *current = head;
     while (current->next != nullptr)
         current = current->next;
-    ListNode *newNode = new ListNode(x);
-    current->next = newNode;
+    current->next = new ListNode(x);
 }
 
 void printList(ListNode *head)
 {
-    if (head == nullptr)
-        return;
-    cout << head->val << " ";
-    printList(head->next);
+    while (head != nullptr)
+    {
+        cout << head->val << " ";
+        head = head->next;
+    }
+    cout << '\n';
 }
 
 int main()
