@@ -41,7 +41,7 @@ public:
             parent = current;
             if (val < current->val)
                 current = current->left;
-            else if (val > current->val)
+            else
                 current = current->right;
         }
         if (val < parent->val)
