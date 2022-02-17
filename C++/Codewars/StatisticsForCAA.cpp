@@ -1,3 +1,4 @@
+// success
 // https://www.codewars.com/kata/55b3425df71c1201a800009c/train/cpp
 #include <iostream>
 #include <string>
@@ -11,6 +12,9 @@
 #include <algorithm>
 
 // using namespace std;
+
+#define SEC_PER_MIN 60
+#define SEC_PER_HR SEC_PER_MIN * 60
 
 class Stat
 {
@@ -78,7 +82,7 @@ public:
                 }
 
                 v.push_back(hour * 3600 + minute * 60 + second);
-                sum += (double)(hour * 3600 + minute * 60 + second);
+                sum += double(hour * 3600 + minute * 60 + second);
 
                 if (temp[i + 1] == ' ') // update start index for next substring
                 {
@@ -92,69 +96,72 @@ public:
         sort(v.begin(), v.end());
 
         int size_v = v.size();
-        double range = (double)(v.back() - v.front());
-        double average = sum / (double)size_v;
-        double median = size_v % 2 == 0 ? (double)(v[size_v / 2 - 1] + v[size_v / 2]) / 2.0 : (double)v[size_v / 2];
+        int range = v.back() - v.front();
+        double average = sum / double(size_v);
+        double median = size_v % 2 == 0 ? double(v[size_v / 2 - 1] + v[size_v / 2]) / 2.0 : double(v[size_v / 2]);
 
         // get Range
         res += "Range: ";
-        range /= 3600.0; // get hour
-        if ((int)range < 10)
-            res += "0" + std::to_string((int)range) + "|";
+        int t = range;
+        range = double(t) / double(SEC_PER_HR); // get hour
+        if (range < 10)
+            res += "0" + std::to_string(range) + "|";
         else
-            res += std::to_string((int)range) + "|";
-        range -= (int)range;
-        range *= 60.0; // get minute
-        if ((int)range < 10)
-            res += "0" + std::to_string((int)range) + "|";
+            res += std::to_string(range) + "|";
+        t -= range * SEC_PER_HR;
+        range = double(t) / double(SEC_PER_MIN); // get minute
+        if (range < 10)
+            res += "0" + std::to_string(range) + "|";
         else
-            res += std::to_string((int)range) + "|";
-        range -= (int)range;
-        range *= 60.0; //get second
-        if ((int)range < 10)
-            res += "0" + std::to_string((int)trunc(range)) + " ";
+            res += std::to_string(range) + "|";
+        t -= range * SEC_PER_MIN;
+        range = t; //get second
+        if (range < 10)
+            res += "0" + std::to_string(range) + " ";
         else
-            res += std::to_string((int)trunc(range)) + " ";
+            res += std::to_string(range) + " ";
 
         // get Average
         res += "Average: ";
-        average /= 3600.0; // get hour
+        double t1 = average;
+        average = t1 / double(SEC_PER_HR); // get hour
         if ((int)average < 10)
             res += "0" + std::to_string((int)average) + "|";
         else
             res += std::to_string((int)average) + "|";
-        average -= (int)average;
-        average *= 60.0; // get minute
+        t1 -= double(int(average)) * double(SEC_PER_HR);
+        average = t1 / double(SEC_PER_MIN); // get minute
         if ((int)average < 10)
             res += "0" + std::to_string((int)average) + "|";
         else
             res += std::to_string((int)average) + "|";
-        average -= (int)average;
-        average *= 60.0; //get second
+        t1 -= double(int(average)) * double(SEC_PER_MIN);
+        average = t1; //get second
         if ((int)average < 10)
-            res += "0" + std::to_string((int)trunc(average)) + " ";
+            res += "0" + std::to_string((int)average) + " ";
         else
-            res += std::to_string((int)trunc(average)) + " ";
+            res += std::to_string((int)average) + " ";
 
         // get Median
         res += "Median: ";
-        median /= 3600.0; // get hour
+        t1 = median;
+        median = t1 / double(SEC_PER_HR); // get hour
         if ((int)median < 10)
             res += "0" + std::to_string((int)median) + "|";
         else
             res += std::to_string((int)median) + "|";
-        median -= (int)median;
-        median *= 60.0; // get minute
+        t1 -= double(int(median)) * double(SEC_PER_HR);
+        median = t1 / double(SEC_PER_MIN); // get minute
         if ((int)median < 10)
             res += "0" + std::to_string((int)median) + "|";
         else
             res += std::to_string((int)median) + "|";
-        median -= (int)median;
-        median *= 60.0; //get second
+        t1 -= double(int(median)) * double(SEC_PER_MIN);
+        median = t1; //get second
         if ((int)median < 10)
-            res += "0" + std::to_string((int)trunc(median));
+            res += "0" + std::to_string((int)median);
         else
-            res += std::to_string((int)trunc(median));
+            res += std::to_string((int)median);
 
         return res;
     }
