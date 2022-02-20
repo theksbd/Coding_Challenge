@@ -70,7 +70,6 @@ std::string reverse_words(std::string str)
     }
     end = i;
   }
-
   return res;
 }
 
