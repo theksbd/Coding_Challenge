@@ -44,8 +44,13 @@ public:
     }
 };
 
-void insert(ListNode *head, int x)
+void insert(ListNode *&head, int x)
 {
+    if (head == nullptr)
+    {
+        head = new ListNode(x);
+        return;
+    }
     ListNode *current = head;
     while (current->next != nullptr)
         current = current->next;
