@@ -32,14 +32,11 @@ public:
                     return false;
                 if ((s[i] == '}' && st.top() != '{') || (s[i] == ']' && st.top() != '[') || (s[i] == ')' && st.top() != '('))
                     return false;
-                else
-                    st.pop();
+                st.pop();
             }
             i++;
         }
-        if (st.empty() == false)
-            return false;
-        return true;
+        return st.empty();
     }
 };
 
