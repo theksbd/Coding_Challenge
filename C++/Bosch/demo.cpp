@@ -36,6 +36,7 @@ int solution(vector<int> &A)
 
 int main()
 {
-    // Solution v1.0 - Time complexity: O() ~ ms - Memory: mb
+    vector<int> A = {0, -5, 1, 2, 3};
+    cout << solution(A) << endl;
     return 0;
 }
