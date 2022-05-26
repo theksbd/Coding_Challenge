@@ -17,5 +17,8 @@ using namespace std;
 int main()
 {
     // Solution v1.0 - Time complexity: O() ~ ms - Memory: mb
+    ios::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
     return 0;
 }
