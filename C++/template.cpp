@@ -1,16 +1,12 @@
 #include <iostream>
 #include <string>
 #include <math.h>
-#include <iomanip>
-#include <list>
 #include <vector>
 #include <stack>
 #include <queue>
 #include <map>
 #include <set>
 #include <algorithm>
-#include <numeric>
-#include <climits>
 
 using namespace std;
 
