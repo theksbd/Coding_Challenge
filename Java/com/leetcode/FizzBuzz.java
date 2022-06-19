@@ -5,10 +5,13 @@ package com.leetcode;
 import java.util.ArrayList;
 import java.util.List;
 
-public class FizzBuzz {
-    public List<String> fizzBuzz(int n) {
+public class FizzBuzz
+{
+    public List<String> fizzBuzz(int n)
+    {
         List<String> res = new ArrayList<>();
-        for (int i = 1; i <= n; i++) {
+        for (int i = 1; i <= n; i++)
+        {
             if (i % 15 == 0)
                 res.add("FizzBuzz");
             else if (i % 3 == 0)
@@ -21,7 +24,8 @@ public class FizzBuzz {
         return res;
     }
 
-    public static void main(String[] args) {
+    public static void main(String[] args)
+    {
         FizzBuzz a = new FizzBuzz();
         System.out.println(a.fizzBuzz(20));
     }
