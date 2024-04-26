@@ -1,7 +1,7 @@
 # import os
 import subprocess
 
-# Get the current directory 
+# Get the current directory
 # curdir = os.getcwd()
 
 # Navigate back to the Git root folder
@@ -10,11 +10,11 @@ import subprocess
 # Run git status
 subprocess.run(["git", "status"])
 
-# Run git add . 
+# Run git add .
 subprocess.run(["git", "add", "."])
 
 # Run git commit -m "update"
-subprocess.run(["git", "commit", "-m", "update more exercises"])
+subprocess.run(["git", "commit", "-m", "update more problems"])
 
 # Run git push
 subprocess.run(["git", "push"])
